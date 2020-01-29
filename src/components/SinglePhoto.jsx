@@ -1,9 +1,16 @@
 import React from "react";
+import "../styles/singlePhoto.css";
 
 export default function SinglePhoto(props) {
+  const url = `data:image/png;base64,${props.photo.url}`;
   return (
     <div className="single-photo">
-      <img src={props.photo} alt="single" onClick={props.click}></img>
+      <img
+        className="photoImg"
+        src={url}
+        alt="single"
+        onClick={() => props.click(props.photo)}
+      ></img>
     </div>
   );
 }

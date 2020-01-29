@@ -25,7 +25,11 @@ export function listObjects() {
         return;
       }
 
-      resolve(data.Contents);
+      resolve(
+        data.Contents.filter((photoObject, index) => {
+          return data.Contents.indexOf(photoObject) === index;
+        }).slice(0, 10)
+      );
     });
   });
 
