@@ -54,6 +54,7 @@ export function getSingleObject(key) {
 }
 
 export function saveObject(file) {
+  // console.log(file)
   const saveObject = new Promise((resolve, reject) => {
     bucket.putObject(
       {
@@ -71,6 +72,6 @@ export function saveObject(file) {
       }
     );
   });
-
+  // console.log(saveObject)
   return saveObject;
 }
