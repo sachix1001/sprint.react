@@ -12,20 +12,18 @@ export default function App() {
 
   const selectPhoto = selected => {
     setSelectedPhoto(selected);
-    console.log(selected);
     setCurrentView("SinglePhoto");
-    console.log(currentView, selectedPhoto);
   };
 
   const changeCurrentView = change => {
-    console.log(currentView, "changed?");
     setCurrentView("AllPhotos");
   };
 
   const uploadPhoto = async photo => {
-    const savedPhoto = await saveObject(photo);
-    setPhotos([...photos, savedPhoto]);
-    await console.log(savedPhoto);
+    const savedPhoto = await saveObject(photo[0]);
+
+    await setPhotos([...photos, savedPhoto]);
+    await setCurrentView("AllPhotos");
   };
 
   const getPhotos = async () => {

@@ -9,7 +9,6 @@ export default function AllPhotos(props) {
   return (
     <div className="allPhotos">
       {props.photos.map(photo => {
-        console.log(photo);
         return (
           <SinglePhoto
             key={photo.key}

@@ -8,7 +8,9 @@ export default function Upload(props) {
       <input
         type="file"
         className="file-upload-input"
-        onChange={event => props.upload(event.target.files[0])}
+        onChange={event => {
+          return props.upload(event.target.files);
+        }}
       ></input>
     </div>
   );

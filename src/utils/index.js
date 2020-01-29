@@ -28,7 +28,7 @@ export function listObjects() {
       resolve(
         data.Contents.filter((photoObject, index) => {
           return data.Contents.indexOf(photoObject) === index;
-        }).slice(0, 10)
+        }).slice(0, 50)
       );
     });
   });
@@ -58,8 +58,12 @@ export function getSingleObject(key) {
 }
 
 export function saveObject(file) {
-  // console.log(file)
   const saveObject = new Promise((resolve, reject) => {
+    console.log({
+      Key: file.name,
+      Body: file,
+      ACL: "public-read"
+    });
     bucket.putObject(
       {
         Key: file.name,
@@ -72,10 +76,12 @@ export function saveObject(file) {
           return;
         }
 
-        resolve(data);
+        resolve(data => {
+          console.log(data);
+          return data;
+        });
       }
     );
   });
-  // console.log(saveObject)
   return saveObject;
 }
