@@ -20,9 +20,7 @@ export default function App() {
   };
 
   const uploadPhoto = async photo => {
-    console.log(photo[0].name);
     await saveObject(photo[0]);
-    // await getPhotos();
     await setSelectedPhoto({
       key: photo[0].name,
       url: await getSingleObject(photo[0].name)
@@ -57,6 +55,7 @@ export default function App() {
         currentView={currentView}
         changeCurrentView={changeCurrentView}
         uploadPhoto={uploadPhoto}
+        getPhotos={getPhotos}
       ></Navbar>
       {!selectedPhoto ? (
         <AllPhotos selectPhoto={selectPhoto} photos={photos}></AllPhotos>
