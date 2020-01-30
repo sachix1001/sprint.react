@@ -20,9 +20,9 @@ export default function App() {
   };
 
   const uploadPhoto = async photo => {
-    const savedPhoto = await saveObject(photo[0]);
+    await saveObject(photo[0]);
 
-    await setPhotos([...photos, savedPhoto]);
+    await getPhotos();
     await setCurrentView("AllPhotos");
   };
 

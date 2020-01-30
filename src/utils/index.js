@@ -28,7 +28,7 @@ export function listObjects() {
       resolve(
         data.Contents.filter((photoObject, index) => {
           return data.Contents.indexOf(photoObject) === index;
-        }).slice(0, 50)
+        })
       );
     });
   });
