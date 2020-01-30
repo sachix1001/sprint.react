@@ -59,11 +59,11 @@ export function getSingleObject(key) {
 
 export function saveObject(file) {
   const saveObject = new Promise((resolve, reject) => {
-    console.log({
-      Key: file.name,
-      Body: file,
-      ACL: "public-read"
-    });
+    // console.log({
+    //   Key: file.name,
+    //   Body: file,
+    //   ACL: "public-read"
+    // });
     bucket.putObject(
       {
         Key: file.name,

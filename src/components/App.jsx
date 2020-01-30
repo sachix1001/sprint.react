@@ -20,10 +20,14 @@ export default function App() {
   };
 
   const uploadPhoto = async photo => {
+    console.log(photo[0].name);
     await saveObject(photo[0]);
-
-    await getPhotos();
-    await setCurrentView("AllPhotos");
+    // await getPhotos();
+    await setSelectedPhoto({
+      key: photo[0].name,
+      url: await getSingleObject(photo[0].name)
+    });
+    await setCurrentView("SinglePhoto");
   };
 
   const getPhotos = async () => {
@@ -43,6 +47,7 @@ export default function App() {
   useEffect(() => {
     if (currentView === "AllPhotos") {
       setSelectedPhoto("");
+      getPhotos();
     }
   }, [currentView]);
 
@@ -62,7 +67,6 @@ export default function App() {
           click=""
         ></SinglePhoto>
       )}
-      {/* <AllPhotos selectPhoto={selectPhoto} photos={photos}></AllPhotos> */}
     </div>
   );
 }
