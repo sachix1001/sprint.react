@@ -9,6 +9,7 @@ export default function App() {
   const [currentView, setCurrentView] = useState("AllPhotos");
   const [photos, setPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState("");
+  const [test, setTest] = useState("loading");
 
   const selectPhoto = selected => {
     setSelectedPhoto(selected);
@@ -30,12 +31,14 @@ export default function App() {
 
   const getPhotos = async () => {
     const photoObj = await listObjects();
+    console.log(photoObj);
     const photo64 = await Promise.all(
       photoObj.map(async photo => {
         return { key: photo.Key, url: await getSingleObject(photo.Key) };
       })
     );
-    setPhotos(photo64);
+    await setPhotos(photo64);
+    await setTest("finish");
   };
 
   useEffect(() => {
@@ -66,6 +69,12 @@ export default function App() {
           click=""
         ></SinglePhoto>
       )}
+      {test === "loading" ? (
+        <React.Fragment>
+          <div className="loader"></div>
+          <div className="loaderText">loading...</div>
+        </React.Fragment>
+      ) : null}
     </div>
   );
 }
