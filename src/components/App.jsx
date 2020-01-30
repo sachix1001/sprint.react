@@ -56,7 +56,11 @@ export default function App() {
       {!selectedPhoto ? (
         <AllPhotos selectPhoto={selectPhoto} photos={photos}></AllPhotos>
       ) : (
-        <SinglePhoto photo={selectedPhoto} photos={photos}></SinglePhoto>
+        <SinglePhoto
+          photo={selectedPhoto}
+          photos={photos}
+          click=""
+        ></SinglePhoto>
       )}
       {/* <AllPhotos selectPhoto={selectPhoto} photos={photos}></AllPhotos> */}
     </div>

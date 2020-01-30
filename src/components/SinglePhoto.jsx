@@ -9,7 +9,9 @@ export default function SinglePhoto(props) {
         className="photoImg"
         src={url}
         alt="single"
-        onClick={() => props.click(props.photo)}
+        onClick={() => {
+          if (props.click) props.click(props.photo);
+        }}
       ></img>
     </div>
   );
