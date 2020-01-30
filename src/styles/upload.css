@@ -10,3 +10,26 @@ input {
 button {
   height: 2rem;
 }
+
+.file-upload-input {
+  margin-right: 70px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 1;
+  width: 0;
+  height: 100%;
+  opacity: 0;
+}
+
+.file-upload__label {
+  margin-right: 70px;
+  padding: 1em 2em;
+  color: #ff7b3c;
+  background: #fff;
+  border-radius: 0.4em;
+  transition: background 0.3s;
+  cursor: pointer;
+}

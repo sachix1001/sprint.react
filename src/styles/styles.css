@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  background-color: #e7dfdd;
+  font-family: sans-serif;
 }
 
 .navText {
@@ -33,10 +35,10 @@ body {
 }
 
 .loaderText {
-  position: absolute;
-  top: 57%;
-  left: 53%;
-  margin-right: -50%;
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
+  margin: 10% 30%;
 }
 
 @-webkit-keyframes spin {

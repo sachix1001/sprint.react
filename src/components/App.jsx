@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import AllPhotos from "./AllPhotos";
 import SinglePhoto from "./SinglePhoto";
 import { saveObject, listObjects, getSingleObject } from "../utils/index";
+import image from "../img/download.png";
 
 export default function App() {
   const [currentView, setCurrentView] = useState("AllPhotos");
@@ -70,10 +71,7 @@ export default function App() {
         ></SinglePhoto>
       )}
       {test === "loading" ? (
-        <React.Fragment>
-          <div className="loader"></div>
-          <div className="loaderText">loading...</div>
-        </React.Fragment>
+        <img className="loaderText" src={image} alt="loading" />
       ) : null}
     </div>
   );
