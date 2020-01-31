@@ -25,18 +25,20 @@ export default function App() {
   };
 
   const changeCurrentView = change => {
+    // console.log("changed")
     dispatch(changeView("AllPhotos"));
   };
 
   const uploadPhoto = async photo => {
     await saveObject(photo[0]);
     await dispatch(
-      selectPhoto({
+      chosePhoto({
         key: photo[0].name,
         url: await getSingleObject(photo[0].name)
       })
     );
     await dispatch(changeView("SinglePhoto"));
+    await getPhotos();
   };
 
   const getPhotos = async () => {
@@ -57,9 +59,9 @@ export default function App() {
   useEffect(() => {
     if (currentView === "AllPhotos") {
       dispatch(chosePhoto(""));
-      getPhotos();
+      // getPhotos();
     }
-  }, [currentView]);
+  }, [currentView, dispatch]);
 
   return (
     <div className="app">

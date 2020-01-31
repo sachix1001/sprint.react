@@ -12,14 +12,13 @@ button {
 }
 
 .file-upload-input {
-  margin-right: 70px;
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 86%;
+  top: 35%;
   right: 0;
   bottom: 0;
   font-size: 1;
-  width: 0;
+  /* width: 0; */
   height: 100%;
   opacity: 0;
 }
