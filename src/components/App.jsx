@@ -5,40 +5,48 @@ import AllPhotos from "./AllPhotos";
 import SinglePhoto from "./SinglePhoto";
 import { saveObject, listObjects, getSingleObject } from "../utils/index";
 import image from "../img/download.png";
+import { changeView, setPhotos, chosePhoto } from "../redux/redux.js";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState("AllPhotos");
-  const [photos, setPhotos] = useState([]);
-  const [selectedPhoto, setSelectedPhoto] = useState("");
+  // const [currentView, setCurrentView] = useState("AllPhotos");
+  // const [photos, setPhotos] = useState([]);
+  // const [selectedPhoto, setSelectedPhoto] = useState("");
   const [test, setTest] = useState("loading");
 
+  const currentView = useSelector(state => state.view);
+  const photos = useSelector(state => state.photos);
+  const selectedPhoto = useSelector(state => state.selectedPhoto);
+  const dispatch = useDispatch();
+
   const selectPhoto = selected => {
-    setSelectedPhoto(selected);
-    setCurrentView("SinglePhoto");
+    dispatch(chosePhoto(selected));
+    dispatch(changeView("SinglePhoto"));
   };
 
   const changeCurrentView = change => {
-    setCurrentView("AllPhotos");
+    dispatch(changeView("AllPhotos"));
   };
 
   const uploadPhoto = async photo => {
     await saveObject(photo[0]);
-    await setSelectedPhoto({
-      key: photo[0].name,
-      url: await getSingleObject(photo[0].name)
-    });
-    await setCurrentView("SinglePhoto");
+    await dispatch(
+      selectPhoto({
+        key: photo[0].name,
+        url: await getSingleObject(photo[0].name)
+      })
+    );
+    await dispatch(changeView("SinglePhoto"));
   };
 
   const getPhotos = async () => {
     const photoObj = await listObjects();
-    console.log(photoObj);
     const photo64 = await Promise.all(
       photoObj.map(async photo => {
         return { key: photo.Key, url: await getSingleObject(photo.Key) };
       })
     );
-    await setPhotos(photo64);
+    await dispatch(setPhotos(photo64));
     await setTest("finish");
   };
 
@@ -48,7 +56,7 @@ export default function App() {
 
   useEffect(() => {
     if (currentView === "AllPhotos") {
-      setSelectedPhoto("");
+      dispatch(chosePhoto(""));
       getPhotos();
     }
   }, [currentView]);

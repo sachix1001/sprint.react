@@ -5,7 +5,7 @@ import "../styles/upload.css";
 export default function Upload(props) {
   return (
     <div className="file-upload">
-      <label for="upload" class="file-upload__label">
+      <label htmlFor="upload" className="file-upload__label">
         Upload file
       </label>
       <input
