@@ -1,18 +1,12 @@
 import React from "react";
 import "../styles/singlePhoto.css";
+import { useSelector } from "react-redux";
 
-export default function SinglePhoto(props) {
-  const url = `data:image/png;base64,${props.photo.url}`;
+export default function SinglePhoto() {
+  const selectedPhoto = useSelector(state => state.selected);
   return (
     <div className="single-photo">
-      <img
-        className="photoImg"
-        src={url}
-        alt="single"
-        onClick={() => {
-          if (props.click) props.click(props.photo);
-        }}
-      ></img>
+      <img className="photoImg" src={selectedPhoto} alt="single"></img>
     </div>
   );
 }

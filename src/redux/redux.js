@@ -3,7 +3,8 @@ import { createStore } from "redux";
 const initialState = {
   view: "AllPhotos",
   photos: [],
-  selectedPhoto: ""
+  selected: "",
+  update: ""
 };
 
 export const changeView = view => {
@@ -18,10 +19,17 @@ export const setPhotos = photos => {
     photos
   };
 };
-export const chosePhoto = select => {
+export const chosePhoto = selected => {
   return {
     type: "SELECT_PHOTO",
-    select
+    selected
+  };
+};
+
+export const updatePhoto = update => {
+  return {
+    type: "UPDATE_PHOTO",
+    update
   };
 };
 
@@ -29,13 +37,17 @@ const reducer = (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
     case "CHANGE_VIEW": {
+      console.log(action.view);
       return { ...state, view: action.view };
     }
     case "SET_PHOTOS": {
       return { ...state, photos: action.photos };
     }
     case "SELECT_PHOTO": {
-      return { ...state, selectedPhoto: action.select };
+      return { ...state, selected: action.selected };
+    }
+    case "UPDATE_PHOTO": {
+      return { ...state, update: action.update };
     }
   }
   return state;

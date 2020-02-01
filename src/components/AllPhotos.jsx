@@ -1,20 +1,28 @@
 import React from "react";
-import _ from "lodash";
-import { PresignedPost } from "aws-sdk/clients/s3";
+// import _ from "lodash";
+// import { PresignedPost } from "aws-sdk/clients/s3";
 import "../styles/AllPhotos.css";
+import { useSelector, useDispatch } from "react-redux";
+import { chosePhoto, changeView } from "../redux/redux";
+import shortid from "shortid";
 
-import SinglePhoto from "./SinglePhoto";
-
-export default function AllPhotos(props) {
+export default function AllPhotos() {
+  const dispatch = useDispatch();
+  const photos = useSelector(state => state.photos);
   return (
     <div className="allPhotos">
-      {props.photos.map(photo => {
+      {photos.map(photo => {
         return (
-          <SinglePhoto
-            key={photo.key}
-            photo={photo}
-            click={props.selectPhoto}
-          ></SinglePhoto>
+          <img
+            className="photoImg"
+            alt="single"
+            src={`data:image/png;base64,${photo.url}`}
+            key={shortid.generate()}
+            onClick={e => {
+              dispatch(chosePhoto(e.target.src));
+              dispatch(changeView("SinglePhoto"));
+            }}
+          ></img>
         );
       })}
     </div>
